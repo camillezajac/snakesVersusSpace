@@ -1,7 +1,7 @@
 # snakesVersusSpace
 Description: MLH Snakes and Hackers: Snake shooter game
 
-Contributors: Kruti Sutaria, Abhinav Sinha
+Contributors: Kruti Sutaria, Abhinav Sinha, Kumar Mallikarjuna, Camille Zajac
 
 Dependencies: django, pygame
 
