@@ -1,7 +1,7 @@
 # snakesVersusSpace
 
 Description: MLH Snakes and Hackers: Snake shooter game
-Contributors: Kruti Sutaria (Github: @), Abhinav Sinha (Github: @), Kumar Mallikarjuna (Github: @), Camille Zajac (Github: @camillezajac)
+Contributors: Kruti Sutaria (Github: @kruti-s), Abhinav Sinha (Github: @zeborg), Kumar Mallikarjuna (Github: @), Camille Zajac (Github: @camillezajac)
 Date: 2021-01-08
 Last Modified:
 
