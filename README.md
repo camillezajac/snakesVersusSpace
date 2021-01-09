@@ -2,7 +2,7 @@
 
 Description: MLH Snakes and Hackers: Snake shooter game
 
-Contributors: Kruti Sutaria (Github: @kruti-s), Abhinav Sinha (Github: @zeborg), Kumar Mallikarjuna (Github: @), Camille Zajac (Github: @camillezajac)
+Contributors: Kruti Sutaria (Github: @kruti-s), Abhinav Sinha (Github: @zeborg), Kumar Mallikarjuna (Github: @ojhaarjun1), Camille Zajac (Github: @camillezajac)
 
 Date: 2021-01-08
 
