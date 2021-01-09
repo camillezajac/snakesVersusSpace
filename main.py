@@ -12,15 +12,15 @@ from random import randint
 (x,y) = (540,576)
 
 # player and enemy icons
-icon_player = pygame.image.load('lad.png')
-icon_enemy = pygame.image.load('snk.png')
+icon_player = pygame.image.load('img/lad.png')
+icon_enemy = pygame.image.load('img/snk.png')
 
 # initialize pygame
 pygame.init()
 
 # display, title and icon
 screen = pygame.display.set_mode((1080,720))
-pygame.display.set_icon(pygame.image.load('ico.png'))
+pygame.display.set_icon(pygame.image.load('img/ico.png'))
 pygame.display.set_caption('Snakes vs. Space')
 
 # ladder
@@ -42,7 +42,7 @@ def game():
 
     running = True
     while running:
-        screen.blit(pygame.image.load('bg.jpeg'), (0,0))
+        screen.blit(pygame.image.load('img/bg.jpeg'), (0,0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
