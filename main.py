@@ -145,7 +145,7 @@ def game():
     space_count = 0
     SCORE = 0
     finalscore = 0
-    snk_velocity = [0.5,0.8,1.2]
+    snk_velocity = [2.5,2.8,3.2]
     global x, y, SHOOTING
     Xchange = Ychange = 0
     
