@@ -260,8 +260,6 @@ def game():
         prevtime = time.time()
         if GAME_OVER:
             stop_timer = time.time()
-            
-            SCORE = 0
 
             go = pygame.font.Font(pygame.font.get_default_font(), 72)
 
@@ -289,6 +287,9 @@ def game():
                 screen.blit(fintime,fintimebox)
                 pygame.display.update()
             updatedb(USER,SCORE,round(((finalscore/5)/space_count)*100,2),round(stop_timer-start_timer,2))
+            
+            SCORE = 0
+            
             break
 
         # tracking final score till the game gets over    
