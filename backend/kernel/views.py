@@ -13,7 +13,17 @@ from .models import ScoreModel
 
 
 def home(request):
-    return render(request, "index.html", {})
+    data = None
+
+    if request.user.is_authenticated:
+        user = request.user
+        data = ScoreModel.objects.filter(user=user.id).order_by("score").all()
+
+        if not data.exists():
+            data = None
+
+    print(data)
+    return render(request, "index.html", {"scores": data})
 
 
 def login(request):

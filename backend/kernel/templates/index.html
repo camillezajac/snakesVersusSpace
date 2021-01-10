@@ -3,6 +3,20 @@
 {% block content %}
 	{% if user.is_authenticated %}
 		<center>
+			{% if scores is not None %}
+			<table>
+				<th>Score</th>
+				<th>Accuracy</th>
+				<th>Time (in seconds)</th>
+			{% for score in scores %}
+			<tr>
+				<td>{{ score.score }}</td>
+				<td>{{ score.accuracy }}</td>
+				<td>{{ score.time_s }}</td>
+			</tr>
+			{% endfor %}
+			</table>
+			{% endif %}
 		    <h1><a href="/logout">Logout</a></h1>
     </center>
 	{% else %}
