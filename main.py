@@ -2,14 +2,18 @@ import time
 import pygame
 import pygame_menu
 import requests
+import concurrent.futures
 from math import sqrt, pow
 from random import randint, randrange
 
+
+PLAYING = False
 DIFFICULTY = 0
 SNAKES_COUNT = 3
 SHOOTING = False
 USER = ""
 PASS = ""
+TOKEN_GEN = ""
 
 
 # ~~~~ graphic sizes ~~~~
@@ -49,10 +53,17 @@ pygame.display.set_caption('Snakes vs. Space')
 
 
 # get login access and refresh tokens
-def gettokens():
+def gettokens():    
     global USER, PASS
-    res = requests.post('TOKEN-SITE-LINK', {"username": USER, "password": PASS}).json()
+    res = requests.post('http://19d4fd84e5c9.ngrok.io/api/token/', {"username": USER, "password": PASS}).json()
+    print(res)
     return res
+
+def updatedb(user,score,acc,timetaken):
+    res = requests.post('http://19d4fd84e5c9.ngrok.io/scores/', data={"username": user, "accuracy": acc, "score": score, "time_s": timetaken}, headers={"Authorization": f'Bearer {TOKEN_GEN}'}).json()
+
+    print(f'\n"Bearer {TOKEN_GEN}"\n')
+    print(res)
 
 
 # player sprite locator
@@ -78,6 +89,7 @@ def collides(xs, ys, xl, yl):
     if D <= 28: return True
     else: return False
 
+# main menu
 def menu():
     def set_difficulty(value, difficulty):
         global DIFFICULTY
@@ -90,6 +102,7 @@ def menu():
     def set_user(value):
         global USER
         USER = value
+        
 
     def set_pass(value):
         global PASS
@@ -138,14 +151,18 @@ def menu():
 
 # game loop
 def game():
-    # tokens = gettokens()
-    # if 'refresh' in tokens.keys(): pass
-    # else: return
-
+    tokens = gettokens()
+    
+    if 'refresh' in tokens.keys():
+        global TOKEN_GEN
+        TOKEN_GEN = tokens['access']
+        pass
+    else: return
+    
     space_count = 0
     SCORE = 0
     finalscore = 0
-    snk_velocity = [2.5,2.8,3.2]
+    snk_velocity = [1.1,1.3,1.7]
     global x, y, SHOOTING
     Xchange = Ychange = 0
     
@@ -170,6 +187,7 @@ def game():
     YLchange = 15
     
     running = True
+    start_timer = time.time()
     while running:
         GAME_OVER = False
 
@@ -180,9 +198,9 @@ def game():
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    Xchange = -8
+                    Xchange = -7
                 if event.key == pygame.K_RIGHT:
-                    Xchange = 8
+                    Xchange = 7
                 if event.key == pygame.K_SPACE:
                     if yl==570:
                         xl = x
@@ -241,6 +259,8 @@ def game():
         # return to main menu if game is over
         prevtime = time.time()
         if GAME_OVER:
+            stop_timer = time.time()
+            
             SCORE = 0
 
             go = pygame.font.Font(pygame.font.get_default_font(), 72)
@@ -256,14 +276,19 @@ def game():
             finacc = font.render(f'Final Accuracy: {round(((finalscore/5)/space_count)*100,2) if space_count != 0 else 0.0}%', True, (0, 255, 0))
             finaccbox = finacc.get_rect()
             finaccbox.center = (540, 400)
+            
+            fintime = font.render(f'Play Time: {round(stop_timer-start_timer,2)} seconds', True, (0, 255, 0))
+            fintimebox = fintime.get_rect()
+            fintimebox.center = (540, 425)
 
             while (time.time()-prevtime) <= 3:
                 screen.blit(bg, (0,0))
                 screen.blit(gameov,gameovbox)
                 screen.blit(finscore,finscorebox)
                 screen.blit(finacc,finaccbox)
+                screen.blit(fintime,fintimebox)
                 pygame.display.update()
-
+            updatedb(USER,SCORE,round(((finalscore/5)/space_count)*100,2),round(stop_timer-start_timer,2))
             break
 
         # tracking final score till the game gets over    
@@ -281,17 +306,25 @@ def game():
 
         acc_percent = ((SCORE/5)/space_count)*100 if space_count != 0 else 0.0
 
+        # ui acc
         acc = font.render(f'Accuracy: {round(acc_percent,2)}%', True, (255,105,180))
         accbox = acc.get_rect()
         accbox.midright = (1030,680)
+        
+        # ui timer
+        timer = font.render(f'Time Elapsed: {int(time.time()-start_timer)} sec', True, (255,255,0))
+        timerbox = timer.get_rect()
+        timerbox.midright = (1030,50)
 
         screen.blit(pygame.image.load('img/bar.png'), (0,640))
         screen.blit(user,userbox)
         screen.blit(score,scorebox)
+        screen.blit(timer,timerbox)
         screen.blit(acc,accbox)
 
         pygame.display.update()
 
-while True:
-    menu().mainloop(screen)
+
+menu().mainloop(screen)
+
 
