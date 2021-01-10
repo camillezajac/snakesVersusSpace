@@ -5,7 +5,6 @@ import requests
 from math import sqrt, pow
 from random import randint, randrange
 
-
 DIFFICULTY = 0
 SNAKES_COUNT = 3
 SHOOTING = False
@@ -30,7 +29,7 @@ bg = pygame.image.load('img/bg.jpg')
 
 
 # player and enemy icons
-icon_player = pygame.image.load('img/lad.png')
+icon_player = pygame.image.load('img/octocat.png')
 icon_snake = pygame.image.load('img/snk.png')
 icon_laser = pygame.image.load('img/laser.png')
 
@@ -40,7 +39,7 @@ pygame.init()
 
 
 # scoreboard
-font = pygame.font.Font('font/PressStart2P-Regular.ttf', 16)
+font = pygame.font.Font(pygame.font.get_default_font(), 22)
 
 
 # display, title and icon
@@ -52,7 +51,7 @@ pygame.display.set_caption('Snakes vs. Space')
 # get login access and refresh tokens
 def gettokens():
     global USER, PASS
-    res = requests.post('http://4883a8798f13.ngrok.io/api/token/', {"username": USER, "password": PASS}).json()
+    res = requests.post('TOKEN-SITE-LINK', {"username": USER, "password": PASS}).json()
     return res
 
 
@@ -97,21 +96,24 @@ def menu():
         PASS = value
         
     menu_bg = pygame_menu.baseimage.BaseImage(
-        image_path='img/bg.jpg',
+        image_path='img/bg-menu.jpg',
+        drawing_mode=pygame_menu.baseimage.IMAGE_MODE_REPEAT_XY
+    )
+    menu_bg_creds = pygame_menu.baseimage.BaseImage(
+        image_path='img/bg-menu-creds.jpg',
         drawing_mode=pygame_menu.baseimage.IMAGE_MODE_REPEAT_XY
     )
 
     pygame_menu.themes.THEME_DARK.background_color = menu_bg
-    pygame_menu.themes.THEME_DARK.widget_font = 'pressstart2p'
+    pygame_menu.themes.THEME_DARK.widget_font = pygame_menu.font.FONT_MUNRO
+    pygame_menu.themes.THEME_DARK.widget_font_size = 36
     pygame_menu.themes.THEME_DARK.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_NONE
     pygame_menu.themes.THEME_DARK.title_offset = (100,100)
-    pygame_menu.themes.THEME_DARK.title_font = 'pressstart2p'
-    pygame_menu.themes.THEME_DARK.title_font_size = 56
-    pygame_menu.themes.THEME_DARK.title_font_color = (124,124,255)
 
-    _menu = pygame_menu.Menu(720, 1080, 'Snakes vs. Space', theme=pygame_menu.themes.THEME_DARK) # main menu
+    _menu = pygame_menu.Menu(720, 1080, '', theme=pygame_menu.themes.THEME_DARK) # main menu
     pygame_menu.themes.THEME_DARK.title_offset = (350,100)
-    _menu_sub = pygame_menu.Menu(720, 1080, 'Credits', theme=pygame_menu.themes.THEME_DARK) # credits section menu
+    pygame_menu.themes.THEME_DARK.background_color = menu_bg_creds
+    _menu_sub = pygame_menu.Menu(720, 1080, '', theme=pygame_menu.themes.THEME_DARK) # credits section menu
 
     # main menu definition
     # max user length: 16, max password length: 64
@@ -129,7 +131,7 @@ def menu():
     _menu_sub.add_button('Camille Zajac', pygame_menu.events.NONE, font_color=(255,51,153))
     _menu_sub.add_button('Kruti Sutaria', pygame_menu.events.NONE, font_color=(255,51,153))
     _menu_sub.add_button('Arjun Ojha', pygame_menu.events.NONE, margin=(0,80), font_color=(255,51,153))
-    _menu_sub.add_button('www.snakes-vs.space', pygame_menu.events.BACK, font_color=(0,255,255), shadow=True, shadow_color=(255,0,255), shadow_offset=2)
+    _menu_sub.add_button('www.snakes-vs.space', pygame_menu.events.BACK, font_color=(0,255,255), shadow=True, shadow_color=(255,0,255), shadow_offset=1)
 
     return _menu
 
@@ -241,7 +243,7 @@ def game():
         if GAME_OVER:
             SCORE = 0
 
-            go = pygame.font.Font('PressStart2P-Regular.ttf', 64)
+            go = pygame.font.Font(pygame.font.get_default_font(), 72)
 
             gameov = go.render('GAME OVER', True, (255, 64, 255))
             gameovbox = gameov.get_rect()
@@ -273,13 +275,13 @@ def game():
         scorebox.center = (540, 680)
 
         # ui player name
-        user = font.render(f'Player: {USER}', True, (255, 32, 124))
+        user = font.render(f'Player: {USER}', True, (255,105,180))
         userbox = user.get_rect()
         userbox.midleft = (50,680)
 
         acc_percent = ((SCORE/5)/space_count)*100 if space_count != 0 else 0.0
 
-        acc = font.render(f'Accuracy: {round(acc_percent,2)}%', True, (255, 32, 124))
+        acc = font.render(f'Accuracy: {round(acc_percent,2)}%', True, (255,105,180))
         accbox = acc.get_rect()
         accbox.midright = (1030,680)
 
