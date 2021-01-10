@@ -294,3 +294,4 @@ def game():
 
 while True:
     menu().mainloop(screen)
+
