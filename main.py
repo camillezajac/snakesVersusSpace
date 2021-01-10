@@ -180,9 +180,9 @@ def game():
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    Xchange = -4
+                    Xchange = -8
                 if event.key == pygame.K_RIGHT:
-                    Xchange = 4
+                    Xchange = 8
                 if event.key == pygame.K_SPACE:
                     if yl==570:
                         xl = x
