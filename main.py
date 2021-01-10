@@ -40,7 +40,7 @@ pygame.init()
 
 
 # scoreboard
-font = pygame.font.Font('PressStart2P-Regular.ttf', 16)
+font = pygame.font.Font('font/PressStart2P-Regular.ttf', 16)
 
 
 # display, title and icon
