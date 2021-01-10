@@ -55,12 +55,12 @@ pygame.display.set_caption('Snakes vs. Space')
 # get login access and refresh tokens
 def gettokens():    
     global USER, PASS
-    res = requests.post('http://19d4fd84e5c9.ngrok.io/api/token/', {"username": USER, "password": PASS}).json()
+    res = requests.post('https://snakesvsspace.herokuapp.com/api/token/', {"username": USER, "password": PASS}).json()
     print(res)
     return res
 
 def updatedb(user,score,acc,timetaken):
-    res = requests.post('http://19d4fd84e5c9.ngrok.io/scores/', data={"username": user, "accuracy": acc, "score": score, "time_s": timetaken}, headers={"Authorization": f'Bearer {TOKEN_GEN}'}).json()
+    res = requests.post('https://snakesvsspace.herokuapp.com/scores/', data={"username": user, "accuracy": acc, "score": score, "time_s": timetaken}, headers={"Authorization": f'Bearer {TOKEN_GEN}'}).json()
 
     print(f'\n"Bearer {TOKEN_GEN}"\n')
     print(res)
@@ -260,8 +260,6 @@ def game():
         prevtime = time.time()
         if GAME_OVER:
             stop_timer = time.time()
-            
-            SCORE = 0
 
             go = pygame.font.Font(pygame.font.get_default_font(), 72)
 
@@ -289,6 +287,9 @@ def game():
                 screen.blit(fintime,fintimebox)
                 pygame.display.update()
             updatedb(USER,SCORE,round(((finalscore/5)/space_count)*100,2),round(stop_timer-start_timer,2))
+            
+            SCORE = 0
+            
             break
 
         # tracking final score till the game gets over    
