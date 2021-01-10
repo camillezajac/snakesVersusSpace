@@ -12,4 +12,6 @@ Dependencies: django, pygame, pygame-menu, djangorestframework
 
 Icons by: https://www.flaticon.com/authors/freepik
 
-Access: https://snakes-vs.space/
+Access: https://snakesvsspace.herokuapp.com/
+
+Comming Soon: https://snakes-vs.space/
