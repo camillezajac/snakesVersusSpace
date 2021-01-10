@@ -9,3 +9,5 @@ Date: 2021-01-08
 Last Modified: 2021-01-10
 
 Dependencies: django, pygame, pygame-menu, djangorestframework
+
+Access: https://snakes-vs.space/
