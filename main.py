@@ -56,14 +56,10 @@ pygame.display.set_caption('Snakes vs. Space')
 def gettokens():    
     global USER, PASS
     res = requests.post('https://snakesvsspace.herokuapp.com/api/token/', {"username": USER, "password": PASS}).json()
-    print(res)
     return res
 
 def updatedb(user,score,acc,timetaken):
     res = requests.post('https://snakesvsspace.herokuapp.com/scores/', data={"username": user, "accuracy": acc, "score": score, "time_s": timetaken}, headers={"Authorization": f'Bearer {TOKEN_GEN}'}).json()
-
-    print(f'\n"Bearer {TOKEN_GEN}"\n')
-    print(res)
 
 
 # player sprite locator
