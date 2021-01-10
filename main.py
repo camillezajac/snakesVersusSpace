@@ -119,7 +119,7 @@ def menu():
     # max user length: 16, max password length: 64
     _menu.add_text_input('Username: ', onchange=set_user, maxchar=16)
     _menu.add_text_input('Password: ', password=True, password_char='*', onchange=set_pass, maxchar=64)
-    _menu.add_selector('Difficulty: ', [('Easy', 0), ('Medium', 1), ('Hard', 2),], font_color=(204,204,0), onchange=set_difficulty)
+    _menu.add_selector('Difficulty: ', [('Easy', 0), ('Medium', 1), ('Hard', 2)], font_color=(204,204,0), onchange=set_difficulty)
     _menu.add_selector('Snakes: ', [('1', 1), ('2', 2), ('3', 3), ('4', 4), ('5', 5), ('6', 6), ('7', 7)], font_color=(204,204,0), onchange=set_snakes_count, margin=(0,40))
     _menu.add_button('Play', game, font_color=(144,238,144))
     _menu.add_button('Quit', pygame_menu.events.EXIT, font_color=(255,99,71), margin=(0,40))
