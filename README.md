@@ -6,6 +6,6 @@ Contributors: Kruti Sutaria (Github: @kruti-s), Abhinav Sinha (Github: @zeborg),
 
 Date: 2021-01-08
 
-Last Modified:2021-01-10
+Last Modified: 2021-01-10
 
 Dependencies: django, pygame, pygame-menu, djangorestframework
