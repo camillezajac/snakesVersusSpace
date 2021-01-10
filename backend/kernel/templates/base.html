@@ -32,7 +32,7 @@
 	<div class="jumbotron text-center" style="margin-bottom:0">
 		<h1>Snakes vs Space</h1>
 		{% if user.is_authenticated %}
-		Logged in as <b>{{ user.username }}</b>
+		Logged in as <b>{{ user.username }}</b> (<a href="/logout">Logout</a>)
 		{% endif %}
 	</div>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
