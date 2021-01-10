@@ -8,7 +8,7 @@ Date: 2021-01-08
 
 Last Modified: 2021-01-10
 
-Dependencies: django, pygame, pygame-menu, djangorestframework
+Dependencies: pygame, pygame-menu, djangorestframework, django
 
 Icons by: https://www.flaticon.com/authors/freepik
 
