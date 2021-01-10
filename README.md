@@ -10,6 +10,6 @@ Last Modified: 2021-01-10
 
 Dependencies: django, pygame, pygame-menu, djangorestframework
 
-Icons downloaded from: https://www.freepik.com/
+Icons by: https://www.flaticon.com/authors/freepik
 
 Access: https://snakes-vs.space/
