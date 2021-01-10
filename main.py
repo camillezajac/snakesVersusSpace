@@ -139,7 +139,7 @@ def menu():
     _menu_sub.add_button('Abhinav Sinha', pygame_menu.events.NONE, font_color=(255,51,153))
     _menu_sub.add_button('Camille Zajac', pygame_menu.events.NONE, font_color=(255,51,153))
     _menu_sub.add_button('Kruti Sutaria', pygame_menu.events.NONE, font_color=(255,51,153))
-    _menu_sub.add_button('Arjun Ojha', pygame_menu.events.NONE, margin=(0,80), font_color=(255,51,153))
+    _menu_sub.add_button('Kumar Mallikarjuna', pygame_menu.events.NONE, margin=(0,80), font_color=(255,51,153))
     _menu_sub.add_button('www.snakes-vs.space', pygame_menu.events.BACK, font_color=(0,255,255), shadow=True, shadow_color=(255,0,255), shadow_offset=1)
 
     return _menu
